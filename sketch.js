@@ -21,7 +21,7 @@ function setup() {
   world = engine.world;
 
  ground = new Ground(width/2,height,width,20);
-  particle=new Particle(350,350,10);
+ // particle=new Particle(350,350,10);
 
 
 
@@ -64,7 +64,7 @@ function setup() {
 function draw() {
   background("black");
   textSize(20)
- //text("Score : "+score,20,30);
+text("Score : "+score,20,30);
   Engine.update(engine);
 
   for (var i = 0; i < plinkos.length; i++) {
@@ -90,7 +90,7 @@ else if(particle.body.position.x>301 && particle.body.position.x<600){
   if(count>=5)
   gameState='end';
 }
-else if(particle.body.position.x<601&& particle.body.position.x>900)
+else if(particle.body.position.x>601&& particle.body.position.x<900)
 {
 score=score+200;
 particle=null;
@@ -99,14 +99,11 @@ gameState='end';
 }
 }
 
-{
-text("Game is over");
-}
   }
   
-   for (var i = 0; i < plinkos.length; i++) {
+   for (var i = 0; i < divisions.length; i++) {
      
-     plinkos[i].display();
+     divisions[i].display();
      
    }
  //  if(frameCount%60===0){
@@ -114,7 +111,7 @@ text("Game is over");
   //   score++;
  //  }
  
-  for (var j = 0; j < particle.length; j++) {
+ /* for (var j = 0; j < particle.length; j++) {
    
      particles[j].display();
    }
@@ -122,6 +119,31 @@ text("Game is over");
      
      divisions[k].display();
    }
+*/
+
+   fill("yellow");
+  
+  rect(400,height-divisionHeight-50,800,5);
+  fill(255);
+   for (var k = 0; k <=width; k = k + 80) {
+     if(k<=300){
+   text("500",k+20,height-divisionHeight+20);
+     }
+   else if(k>500){
+      text("200",k+20,height-divisionHeight+20);
+        }
+        else{
+          text("100",k+20,height-divisionHeight+20);
+        }
+   }
+   if(gameState=='end'){
+    textSize(40);
+    fill(255,0,0);
+    text("GAME OVER",300,250);
+   }
+
+
+
    //score.display();
 }
 function mousePressed(){
